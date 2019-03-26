@@ -128,11 +128,24 @@
     list-style: none;
     margin-top: 3.5rem;
 
+    @media only screen and (max-width: $bp-medium) {
+        display: flex;
+        margin: 0;
+    }
+
     &__item {
         position: relative;
 
+        @media only screen and (max-width: $bp-medium) {
+            flex: 1;
+        }
+
         &:not(:last-child) {
             margin-bottom: .5rem;
+
+            @media only screen and (max-width: $bp-medium) {
+                margin: 0;
+            }
         }
 
         &::before {
@@ -178,6 +191,11 @@
 
             display: flex;
             align-items: center;
+
+            @media only screen and (max-width: $bp-medium) {
+                justify-content: center;
+                padding: 2rem;
+            }
         }
     }
 
@@ -197,6 +215,10 @@
     text-align: center;
     color: var(--color-grey-light-4);
     padding: 2.5rem;
+
+    @media only screen and (max-width: $bp-medium) {
+        display: none;
+    }
 }
 
 
@@ -390,8 +412,10 @@
         margin-right: auto;
     }
 
-
-
+    &__friends{
+        display: flex;
+    }
+    
     &__photo {
         box-sizing: content-box;
         height: 4rem;
@@ -416,6 +440,11 @@
     padding: 3rem;
     margin-bottom: 3.5rem;
 
+    @media only screen and (max-width: $bp-medium) {
+        padding: 2rem;
+        margin-bottom: 3rem;
+    }
+
     &__text {
         margin-bottom: 2rem;
         z-index: 10;
@@ -426,6 +455,8 @@
         display: flex;
         align-items: center;
     }
+
+    
 
     &__photo {
         height: 4.5rem;
@@ -466,5 +497,77 @@
         color: var(--color-grey-light-2);
         font-family: sans-serif;
         z-index: 1;
+    }
+}
+
+///////////////////////////////////////////////////
+// Call to action
+
+.cta{
+    padding: 3.5rem 0;
+    text-align: center;
+
+    @media only screen and (max-width: $bp-medium) {
+        padding: 2.5rem 0;
+    }
+
+    &__book-now{
+        font-size: 2rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        margin-bottom: 2.5rem;
+    }
+}
+
+///////////////////////////////////////////////////
+// BTN
+
+.btn{
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    border-radius: 100px;
+    border: none;
+    background-image: linear-gradient(to right, var(--color-primary-light), var(--color-primary-dark));
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    
+    & > *{
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        transition: all .2s;
+    }
+
+
+    &__visible{
+        padding: 2rem 7.5rem;
+    }
+
+    &__invisible{
+        position: absolute;
+        padding: 2rem;
+        left: 0;
+        top: -100%;
+    }
+
+    &:hover{
+        background-image: linear-gradient(to left, var(--color-primary-light), var(--color-primary-dark));
+    }
+
+    &:focus{
+        outline: none;
+        animation: pulsate 1s infinite;
+    }
+
+    &:hover &__visible{
+        transform: translateY(100%);
+
+    } 
+
+    &:hover &__invisible {
+            top: 0;
     }
 }
