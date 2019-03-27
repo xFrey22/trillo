@@ -17,6 +17,12 @@
     align-items: center;
     justify-content: center;
 
+    @media only screen and (max-width: $bp-smallest) {
+        order: 1;
+        flex: 0 0 100%;
+        background-color: var(--color-grey-light-2);
+    }
+
     &__input {
         font-family: inherit;
         font-size: inherit;
@@ -196,6 +202,11 @@
                 justify-content: center;
                 padding: 2rem;
             }
+
+            @media only screen and (max-width: $bp-small) {
+                flex-direction: column;
+                padding: 1.5rem .5rem;
+            }
         }
     }
 
@@ -204,6 +215,13 @@
         height: 1.75rem;
         margin-right: 2rem;
         fill: currentColor;
+
+        @media only screen and (max-width: $bp-small) {
+            margin-right: 0;
+            margin-bottom: .7rem;
+            width: 1.5rem;
+            height: 1.5rem;
+        }
     }
 }
 
@@ -248,6 +266,11 @@
         text-transform: uppercase;
         letter-spacing: 1px;
         padding: 1.5rem 3rem;
+
+        @media only screen and (max-width: $bp-small) {
+            font-size: 1.8rem;
+            padding: 1.25rem 2rem;
+        }
     }
 
     &__stars {
@@ -283,16 +306,28 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+        @media only screen and (max-width: $bp-small) {
+            padding: 0 1.5rem;
+        }
     }
 
     &__rating-average {
         font-size: 2.25rem;
         font-weight: 300;
+
+        @media only screen and (max-width: $bp-small) {
+            font-size: 1.8rem;
+        }
     }
 
     &__rating-cound {
         font-size: 0.8rem;
         text-transform: uppercase;
+
+        @media only screen and (max-width: $bp-small) {
+            font-size: 0.5rem;
+        }
     }
 
 
@@ -312,7 +347,7 @@
     cursor: pointer;
     transition: .2s all;
 
-    & span{
+    & span {
         margin-left: 3px;
         transition: margin-left .2s;
 
@@ -328,7 +363,7 @@
 
     &:focus {
         outline: none;
-        animation: pulsate 1s;//infinite;
+        animation: pulsate 1s; //infinite;
     }
 }
 
@@ -387,13 +422,19 @@
             margin-right: .7rem;
 
             // older browsers
-            // background-size: cover;
-            // background-image: url(../img/chevron-thin-right.svg);
+            background-size: cover;
+            background-image: url(../img/chevron-thin-right.svg);
 
             // newer browser - masks
-            background-color: var(--color-primary);
+            @supports(-webkit-mask-image: url()) or (-webkit-mask-image: url()){
+                background-color: var(--color-primary);
             -webkit-mask-image: url(../img/chevron-thin-right.svg);
             -webkit-mask-size: cover;
+                    mask-image: url(../img/chevron-thin-right.svg);
+                    mask-size: cover;
+            background-image: none;
+            }
+            
         }
     }
 }
@@ -412,10 +453,10 @@
         margin-right: auto;
     }
 
-    &__friends{
+    &__friends {
         display: flex;
     }
-    
+
     &__photo {
         box-sizing: content-box;
         height: 4rem;
@@ -456,7 +497,7 @@
         align-items: center;
     }
 
-    
+
 
     &__photo {
         height: 4.5rem;
@@ -487,7 +528,7 @@
         font-weight: 300;
     }
 
-    &:before{
+    &:before {
         content: "\201C";
         position: absolute;
         top: -2.75rem;
@@ -503,7 +544,7 @@
 ///////////////////////////////////////////////////
 // Call to action
 
-.cta{
+.cta {
     padding: 3.5rem 0;
     text-align: center;
 
@@ -511,7 +552,7 @@
         padding: 2.5rem 0;
     }
 
-    &__book-now{
+    &__book-now {
         font-size: 2rem;
         font-weight: 300;
         text-transform: uppercase;
@@ -522,7 +563,7 @@
 ///////////////////////////////////////////////////
 // BTN
 
-.btn{
+.btn {
     font-size: 1.5rem;
     font-weight: 300;
     text-transform: uppercase;
@@ -533,8 +574,8 @@
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    
-    & > *{
+
+    &>* {
         display: inline-block;
         height: 100%;
         width: 100%;
@@ -542,32 +583,32 @@
     }
 
 
-    &__visible{
+    &__visible {
         padding: 2rem 7.5rem;
     }
 
-    &__invisible{
+    &__invisible {
         position: absolute;
         padding: 2rem;
         left: 0;
         top: -100%;
     }
 
-    &:hover{
+    &:hover {
         background-image: linear-gradient(to left, var(--color-primary-light), var(--color-primary-dark));
     }
 
-    &:focus{
+    &:focus {
         outline: none;
         animation: pulsate 1s infinite;
     }
 
-    &:hover &__visible{
+    &:hover &__visible {
         transform: translateY(100%);
 
-    } 
+    }
 
     &:hover &__invisible {
-            top: 0;
+        top: 0;
     }
 }
